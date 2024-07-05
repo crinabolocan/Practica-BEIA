@@ -1,0 +1,20 @@
+# Utilizăm o imagine de bază cu Node.js
+FROM node:14
+
+# Setăm directorul de lucru în container
+WORKDIR /app
+
+# Copiem fișierele de dependențe
+COPY package.json package-lock.json ./
+
+# Instalăm dependențele
+RUN npm install
+
+# Copiem restul fișierelor din proiect în directorul de lucru
+COPY . .
+
+# Exponăm portul utilizat de serviciu (schimbă numărul portului dacă este necesar)
+EXPOSE 3000
+
+# Comandă pentru a porni serviciul
+CMD ["npm", "start"]
